@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Dapper;
 using FluentAssertions;
@@ -46,6 +47,20 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
                 t.Value.Should().BeNull();
                 t.Value.Should().Be(o.Value);
             }
+        }
+
+        [Fact]
+        public void OffsetHandler_Parse_Should_Return_Same_Offset()
+        {
+            // Arrange
+            var handler = OffsetHandler.Default;
+            var offset = Offset.FromHours(12);
+
+            // Act
+            var result = handler.Parse(offset);
+
+            // Assert
+            result.Should().Be(offset);
         }
 
         private class TestObject

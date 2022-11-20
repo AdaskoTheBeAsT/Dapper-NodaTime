@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Dapper;
 using FluentAssertions;
@@ -106,6 +107,20 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
                 t.Value.Should().BeNull();
                 t.Value.Should().Be(o.Value);
             }
+        }
+
+        [Fact]
+        public void LocalDateHandler_Parse_Should_Return_Same_LocalDate()
+        {
+            // Arrange
+            var handler = LocalDateHandler.Default;
+            var localDate = LocalDate.FromDateTime(DateTime.Now);
+
+            // Act
+            var result = handler.Parse(localDate);
+
+            // Assert
+            result.Should().Be(localDate);
         }
 
         private class TestObject

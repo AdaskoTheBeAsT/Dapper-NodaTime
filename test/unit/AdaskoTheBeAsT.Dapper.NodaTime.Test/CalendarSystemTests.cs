@@ -52,6 +52,20 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             }
         }
 
+        [Fact]
+        public void CalendarSystemHandler_Parse_Should_Return_Same_CalendarSystem()
+        {
+            // Arrange
+            var handler = CalendarSystemHandler.Default;
+            var calendarSystem = CalendarSystem.Iso;
+
+            // Act
+            var result = handler.Parse(calendarSystem);
+
+            // Assert
+            result.Should().Be(calendarSystem);
+        }
+
         private class TestObject
         {
             public CalendarSystem? Value { get; set; }

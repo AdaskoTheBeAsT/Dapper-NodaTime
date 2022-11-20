@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Dapper;
 using FluentAssertions;
@@ -106,6 +107,20 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
                 t.Value.Should().BeNull();
                 t.Value.Should().Be(o.Value);
             }
+        }
+
+        [Fact]
+        public void InstantHandler_Parse_Should_Return_Same_Instant()
+        {
+            // Arrange
+            var handler = InstantHandler.Default;
+            var instant = Instant.FromDateTimeUtc(DateTime.UtcNow);
+
+            // Act
+            var result = handler.Parse(instant);
+
+            // Assert
+            result.Should().Be(instant);
         }
 
         private class TestObject
