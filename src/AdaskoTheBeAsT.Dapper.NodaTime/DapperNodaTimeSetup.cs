@@ -14,6 +14,8 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
             SqlMapper.AddTypeHandler(LocalDateTimeHandler.Default);
             SqlMapper.AddTypeHandler(LocalTimeHandler.Default);
             SqlMapper.AddTypeHandler(OffsetDateTimeHandler.Default);
+            SqlMapper.AddTypeHandler(DurationHandler.Default);
+            SqlMapper.AddTypeHandler(OffsetHandler.Default);
         }
     }
 }
