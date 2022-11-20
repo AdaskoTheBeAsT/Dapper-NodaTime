@@ -8,7 +8,7 @@ using Xunit;
 namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
 {
     [Collection("DBTests")]
-    public class DateTimeZoneTests
+    public sealed class DateTimeZoneTests
     {
         private readonly string _connectionString;
 
@@ -66,7 +66,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             result.Should().Be(dateTimeZone);
         }
 
-        private class TestObject
+        private sealed class TestObject
         {
             public DateTimeZone? Value { get; set; }
         }

@@ -89,7 +89,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             result.Should().Be(period);
         }
 
-        private class TestObject
+        private sealed class TestObject
         {
             public Period? Value { get; set; }
         }

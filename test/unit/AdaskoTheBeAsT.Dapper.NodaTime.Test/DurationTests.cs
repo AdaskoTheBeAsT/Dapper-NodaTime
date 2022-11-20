@@ -62,7 +62,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             result.Should().Be(duration);
         }
 
-        private class TestObject
+        private sealed class TestObject
         {
             public Duration? Value { get; set; }
         }

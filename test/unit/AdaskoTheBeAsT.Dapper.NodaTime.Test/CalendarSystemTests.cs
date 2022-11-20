@@ -8,7 +8,7 @@ using Xunit;
 namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
 {
     [Collection("DBTests")]
-    public class CalendarSystemTests
+    public sealed class CalendarSystemTests
     {
         private readonly string _connectionString;
 
@@ -66,7 +66,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             result.Should().Be(calendarSystem);
         }
 
-        private class TestObject
+        private sealed class TestObject
         {
             public CalendarSystem? Value { get; set; }
         }

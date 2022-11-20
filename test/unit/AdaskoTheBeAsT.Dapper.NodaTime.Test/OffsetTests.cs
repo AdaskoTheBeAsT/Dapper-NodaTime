@@ -62,7 +62,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             result.Should().Be(offset);
         }
 
-        private class TestObject
+        private sealed class TestObject
         {
             public Offset? Value { get; set; }
         }

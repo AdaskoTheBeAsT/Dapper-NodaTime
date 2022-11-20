@@ -123,7 +123,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             result.Should().Be(localDate);
         }
 
-        private class TestObject
+        private sealed class TestObject
         {
             public LocalDate? Value { get; set; }
         }

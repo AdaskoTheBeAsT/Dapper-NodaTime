@@ -61,22 +61,22 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
         {
             if (value.Years != 0)
             {
-                list.Add($"Y:{value.Years}");
+                list.Add($"Y:{value.Years.ToString(CultureInfo.InvariantCulture)}");
             }
 
             if (value.Months != 0)
             {
-                list.Add($"M:{value.Months}");
+                list.Add($"M:{value.Months.ToString(CultureInfo.InvariantCulture)}");
             }
 
             if (value.Weeks != 0)
             {
-                list.Add($"W:{value.Weeks}");
+                list.Add($"W:{value.Weeks.ToString(CultureInfo.InvariantCulture)}");
             }
 
             if (value.Days != 0)
             {
-                list.Add($"D:{value.Days}");
+                list.Add($"D:{value.Days.ToString(CultureInfo.InvariantCulture)}");
             }
         }
 
@@ -84,17 +84,17 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
         {
             if (value.Hours != 0)
             {
-                list.Add($"h:{value.Hours}");
+                list.Add($"h:{value.Hours.ToString(CultureInfo.InvariantCulture)}");
             }
 
             if (value.Minutes != 0)
             {
-                list.Add($"m:{value.Minutes}");
+                list.Add($"m:{value.Minutes.ToString(CultureInfo.InvariantCulture)}");
             }
 
             if (value.Seconds != 0)
             {
-                list.Add($"s:{value.Seconds}");
+                list.Add($"s:{value.Seconds.ToString(CultureInfo.InvariantCulture)}");
             }
         }
 
@@ -102,17 +102,17 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
         {
             if (value.Milliseconds != 0)
             {
-                list.Add($"ms:{value.Milliseconds}");
+                list.Add($"ms:{value.Milliseconds.ToString(CultureInfo.InvariantCulture)}");
             }
 
             if (value.Ticks != 0)
             {
-                list.Add($"t:{value.Ticks}");
+                list.Add($"t:{value.Ticks.ToString(CultureInfo.InvariantCulture)}");
             }
 
             if (value.Nanoseconds != 0)
             {
-                list.Add($"ns:{value.Nanoseconds}");
+                list.Add($"ns:{value.Nanoseconds.ToString(CultureInfo.InvariantCulture)}");
             }
         }
 

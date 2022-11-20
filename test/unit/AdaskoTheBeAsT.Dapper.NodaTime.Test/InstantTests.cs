@@ -123,7 +123,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             result.Should().Be(instant);
         }
 
-        private class TestObject
+        private sealed class TestObject
         {
             public Instant? Value { get; set; }
         }
