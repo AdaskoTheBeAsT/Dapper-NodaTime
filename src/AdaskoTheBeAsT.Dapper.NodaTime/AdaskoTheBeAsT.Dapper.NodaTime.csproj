@@ -18,6 +18,7 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/AdaskoTheBeAsT/AdaskoTheBeAsT.Dapper.NodaTime</PackageProjectUrl>
     <PackageTags>dapper;nodatime;noda time</PackageTags>
   </PropertyGroup>
@@ -35,6 +36,7 @@
   
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+    <None Include="..\..\Readme.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
