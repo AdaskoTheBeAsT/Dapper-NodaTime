@@ -1,5 +1,7 @@
 using System.Linq;
 using Dapper;
+using FluentAssertions;
+using FluentAssertions.Execution;
 using NodaTime;
 using Xunit;
 
@@ -26,7 +28,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             const string sql = "CREATE TABLE #T ([Value] datetime2); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
             var t = connection.Query<TestObject>(sql, o).First();
 
-            Assert.Equal(o.Value, t.Value);
+            t.Value.Should().Be(o.Value);
         }
 
         [Theory]
@@ -39,21 +41,41 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             const string sql = "CREATE TABLE #T ([Value] datetime); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
             var t = connection.Query<TestObject>(sql, o).First();
 
-            Assert.Equal(o.Value, t.Value);
+            t.Value.Should().Be(o.Value);
         }
 
         [Theory]
         [ClassData(typeof(DbVendorLibraryTestData))]
-        public void Can_Write_And_Read_LocalDateTime_With_Null_Value(DbVendorLibrary library)
+        public void Can_Write_And_Read_LocalDateTime_With_Null_Value_Stored_As_DateTime2(DbVendorLibrary library)
         {
             using var connection = DbVendorLibraryConnectionProvider.Provide(library, _connectionString);
             var o = new TestObject();
 
-            const string sql = "CREATE TABLE #T ([Value] datetime2); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
+            const string sql = "CREATE TABLE #T ([Value] datetime2 NULL); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
             var t = connection.Query<TestObject>(sql, o).First();
 
-            Assert.Equal(o.Value, t.Value);
-            Assert.Null(t.Value);
+            using (new AssertionScope())
+            {
+                t.Value.Should().BeNull();
+                t.Value.Should().Be(o.Value);
+            }
+        }
+
+        [Theory]
+        [ClassData(typeof(DbVendorLibraryTestData))]
+        public void Can_Write_And_Read_LocalDateTime_With_Null_Value_Stored_As_DateTime(DbVendorLibrary library)
+        {
+            using var connection = DbVendorLibraryConnectionProvider.Provide(library, _connectionString);
+            var o = new TestObject();
+
+            const string sql = "CREATE TABLE #T ([Value] datetime NULL); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
+            var t = connection.Query<TestObject>(sql, o).First();
+
+            using (new AssertionScope())
+            {
+                t.Value.Should().BeNull();
+                t.Value.Should().Be(o.Value);
+            }
         }
 
         private class TestObject

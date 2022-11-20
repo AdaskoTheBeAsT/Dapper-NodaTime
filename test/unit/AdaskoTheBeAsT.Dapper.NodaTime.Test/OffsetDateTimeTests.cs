@@ -1,5 +1,7 @@
 using System.Linq;
 using Dapper;
+using FluentAssertions;
+using FluentAssertions.Execution;
 using NodaTime;
 using Xunit;
 
@@ -31,7 +33,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             const string sql = "CREATE TABLE #T ([Value] datetimeoffset); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
             var t = connection.Query<TestObject>(sql, o).First();
 
-            Assert.Equal(o.Value, t.Value);
+            t.Value.Should().Be(o.Value);
         }
 
         [Theory]
@@ -41,11 +43,14 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             using var connection = DbVendorLibraryConnectionProvider.Provide(library, _connectionString);
             var o = new TestObject();
 
-            const string sql = "CREATE TABLE #T ([Value] datetimeoffset); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
+            const string sql = "CREATE TABLE #T ([Value] datetimeoffset NULL); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
             var t = connection.Query<TestObject>(sql, o).First();
 
-            Assert.Equal(o.Value, t.Value);
-            Assert.Null(t.Value);
+            using (new AssertionScope())
+            {
+                t.Value.Should().BeNull();
+                t.Value.Should().Be(o.Value);
+            }
         }
 
         public class TestObject
