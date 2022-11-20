@@ -54,9 +54,24 @@ Work in progress.  Currently supports the following types:
 - LocalTime - can be mapped to time, datetime, datetime2
 - Offset - can be mapped to int
 - OffsetDateTime - can be mapped to datetimeoffset
+- Period - can be mapped to varchar(195) 
+Max length of period is 195 characters. It is written as for example
+"Y:-2147483648 M:-2147483648 W:-2147483648 D:-2147483648 h:-9223372036854775808 m:-9223372036854775808 s:-9223372036854775808 ms:-9223372036854775808 t:-9223372036854775808 ns:-9223372036854775808"
 
-Does not yet support:
+Where:
 
-- Period (working on it)
+- Y - years
+- M - months
+- W - weeks
+- D - days
+- h - hours
+- m - minutes
+- s - seconds
+- ms - milliseconds
+- t - ticks
+- ns - nanoseconds
+
+Does not support:
+
 - ZonedDateTime (although there is trick to keep properties separated and then by using mapping code or AutoMapper (or other mapper) 
 compose ZoneDateTime from LocalDateTime, CalendarSystem and DateTimeZone)
