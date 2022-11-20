@@ -8,7 +8,7 @@ using Xunit;
 namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
 {
     [Collection("DBTests")]
-    public class LocalDateTimeTests
+    public sealed class LocalDateTimeTests
     {
         private readonly string _connectionString;
 

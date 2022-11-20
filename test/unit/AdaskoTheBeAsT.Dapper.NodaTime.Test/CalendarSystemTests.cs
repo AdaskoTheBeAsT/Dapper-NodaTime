@@ -8,37 +8,41 @@ using Xunit;
 namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
 {
     [Collection("DBTests")]
-    public sealed class OffsetTests
+    public class CalendarSystemTests
     {
         private readonly string _connectionString;
 
-        public OffsetTests(DatabaseFixture databaseFixture)
+        public CalendarSystemTests(DatabaseFixture databaseFixture)
         {
             _connectionString = databaseFixture.ConnectionString;
-            SqlMapper.AddTypeHandler(OffsetHandler.Default);
+            SqlMapper.AddTypeHandler(CalendarSystemHandler.Default);
         }
 
         [Theory]
         [ClassData(typeof(DbVendorLibraryTestData))]
-        public void Can_Write_And_Read_Offset_Stored_As_Int(DbVendorLibrary library)
+        public void Can_Write_And_Read_CalendarSystem_Stored_As_Int(DbVendorLibrary library)
         {
             using var connection = DbVendorLibraryConnectionProvider.Provide(library, _connectionString);
-            var o = new TestObject { Value = Offset.FromHours(18) };
+            var o = new TestObject { Value = CalendarSystem.Iso };
 
-            const string sql = "CREATE TABLE #T ([Value] int); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
+            const string sql = "CREATE TABLE #T ([Value] varchar(50)); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
             var t = connection.Query<TestObject>(sql, o).First();
 
-            t.Value.Should().Be(o.Value);
+            using (new AssertionScope())
+            {
+                t.Value.Should().NotBeNull();
+                t.Value!.Id.Should().Be(o.Value.Id);
+            }
         }
 
         [Theory]
         [ClassData(typeof(DbVendorLibraryTestData))]
-        public void Can_Write_And_Read_Offset_With_Null_Value_Stored_As_Int(DbVendorLibrary library)
+        public void Can_Write_And_Read_CalendarSystem_With_Null_Value_Stored_As_Int(DbVendorLibrary library)
         {
             using var connection = DbVendorLibraryConnectionProvider.Provide(library, _connectionString);
             var o = new TestObject();
 
-            const string sql = "CREATE TABLE #T ([Value] int NULL); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
+            const string sql = "CREATE TABLE #T ([Value] varchar(50) NULL); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
             var t = connection.Query<TestObject>(sql, o).First();
 
             using (new AssertionScope())
@@ -50,7 +54,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
 
         private class TestObject
         {
-            public Offset? Value { get; set; }
+            public CalendarSystem? Value { get; set; }
         }
     }
 }

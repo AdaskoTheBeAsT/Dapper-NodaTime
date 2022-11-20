@@ -46,17 +46,20 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
                 throw new InvalidOperationException($"Property 'SqlDbType' on type '{parameterType}' is not writable.");
             }
 
-            var dbDataParameter = Expression.Parameter(typeof(IDbDataParameter), "dbDataParameter");
+            var dataParameter = Expression.Parameter(typeof(IDbDataParameter), "dataParameter");
             var sqlDataTypeParameter = Expression.Parameter(typeof(SqlDbType), "sqlDbType");
             var converted = Expression.Variable(parameterType, "converted");
-            var assign1 = Expression.Assign(converted, Expression.Convert(dbDataParameter, parameterType));
+            var assign1 = Expression.Assign(converted, Expression.Convert(dataParameter, parameterType));
             var getProperty = Expression.Property(converted, property);
             var assign2 = Expression.Assign(getProperty, sqlDataTypeParameter);
             var block = Expression.Block(
                 new[] { converted },
                 new Expression[] { assign1, getProperty, assign2 });
             return Expression.Lambda<Action<IDbDataParameter, SqlDbType>>(
-                block, dbDataParameter, sqlDataTypeParameter).Compile();
+                block,
+                dataParameter,
+                sqlDataTypeParameter)
+                .Compile();
         }
     }
 }

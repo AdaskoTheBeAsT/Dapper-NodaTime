@@ -1,4 +1,5 @@
 using Dapper;
+using NodaTime;
 
 namespace AdaskoTheBeAsT.Dapper.NodaTime
 {
@@ -7,7 +8,8 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
         /// <summary>
         /// Convenience method to register all type handlers for Noda Time.
         /// </summary>
-        public static void Register()
+        /// <param name="provider">The date time zone provider to use for <see cref="DateTimeZone"/>.</param>
+        public static void Register(IDateTimeZoneProvider provider)
         {
             SqlMapper.AddTypeHandler(InstantHandler.Default);
             SqlMapper.AddTypeHandler(LocalDateHandler.Default);
@@ -16,6 +18,8 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
             SqlMapper.AddTypeHandler(OffsetDateTimeHandler.Default);
             SqlMapper.AddTypeHandler(DurationHandler.Default);
             SqlMapper.AddTypeHandler(OffsetHandler.Default);
+            SqlMapper.AddTypeHandler(CalendarSystemHandler.Default);
+            SqlMapper.AddTypeHandler(DateTimeZoneHandler.Default(provider));
         }
     }
 }
