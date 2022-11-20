@@ -11,6 +11,11 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
         /// <param name="provider">The date time zone provider to use for <see cref="DateTimeZone"/>.</param>
         public static void Register(IDateTimeZoneProvider provider)
         {
+            if (provider is null)
+            {
+                throw new System.ArgumentNullException(nameof(provider));
+            }
+
             SqlMapper.AddTypeHandler(InstantHandler.Default);
             SqlMapper.AddTypeHandler(LocalDateHandler.Default);
             SqlMapper.AddTypeHandler(LocalDateTimeHandler.Default);

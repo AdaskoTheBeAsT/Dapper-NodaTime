@@ -52,6 +52,20 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             }
         }
 
+        [Fact]
+        public void DateTimeZoneHandler_Parse_Should_Return_Same_CalendarSystem()
+        {
+            // Arrange
+            var handler = DateTimeZoneHandler.Default(DateTimeZoneProviders.Tzdb);
+            var dateTimeZone = DateTimeZone.ForOffset(Offset.FromHours(1));
+
+            // Act
+            var result = handler.Parse(dateTimeZone);
+
+            // Assert
+            result.Should().Be(dateTimeZone);
+        }
+
         private class TestObject
         {
             public DateTimeZone? Value { get; set; }

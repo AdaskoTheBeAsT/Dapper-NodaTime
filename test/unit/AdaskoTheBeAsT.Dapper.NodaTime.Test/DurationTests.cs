@@ -48,6 +48,20 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             }
         }
 
+        [Fact]
+        public void DurationHandler_Parse_Should_Return_Same_Duration()
+        {
+            // Arrange
+            var handler = DurationHandler.Default;
+            var duration = Duration.FromDays(10);
+
+            // Act
+            var result = handler.Parse(duration);
+
+            // Assert
+            result.Should().Be(duration);
+        }
+
         private class TestObject
         {
             public Duration? Value { get; set; }
