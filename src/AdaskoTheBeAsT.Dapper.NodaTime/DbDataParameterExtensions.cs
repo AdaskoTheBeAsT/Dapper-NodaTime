@@ -52,9 +52,11 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
             var assignConvertedExpr = Expression.Assign(convertedVar, Expression.Convert(dataParam, parameterType));
             var getPropertyExpr = Expression.Property(convertedVar, property);
             var assignSqlDbTypeExpr = Expression.Assign(getPropertyExpr, sqlDbTypeParam);
+#pragma warning disable S3878
             var blockExpr = Expression.Block(
                 new[] { convertedVar },
                 new Expression[] { assignConvertedExpr, getPropertyExpr, assignSqlDbTypeExpr });
+#pragma warning restore S3878
             return Expression.Lambda<Action<IDbDataParameter, SqlDbType>>(
                 blockExpr,
                 dataParam,
