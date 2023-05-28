@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -12,10 +13,13 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
     {
         public const string Space = " ";
         public static readonly PeriodHandler Default = new();
-#pragma warning disable MA0009 // Add regex evaluation timeout
+#pragma warning disable MA0023
         private static readonly Regex PeriodRegex =
-            new Regex("(Y[:](?<years>[-]?\\d+))?\\s*(M[:](?<months>[-]?\\d+))?\\s*(W[:](?<weeks>[-]?\\d+))?\\s*(D[:](?<days>[-]?\\d+))?\\s*(h[:](?<hours>[-]?\\d+))?\\s*(m[:](?<minutes>[-]?\\d+))?\\s*(s[:](?<seconds>[-]?\\d+))?\\s*(ms[:](?<miliseconds>[-]?\\d+))?\\s*(t[:](?<ticks>[-]?\\d+))?\\s*(ns[:](?<nanoseconds>[-]?\\d+))?");
-#pragma warning restore MA0009 // Add regex evaluation timeout
+            new Regex(
+                "(Y[:](?<years>[-]?\\d+))?\\s*(M[:](?<months>[-]?\\d+))?\\s*(W[:](?<weeks>[-]?\\d+))?\\s*(D[:](?<days>[-]?\\d+))?\\s*(h[:](?<hours>[-]?\\d+))?\\s*(m[:](?<minutes>[-]?\\d+))?\\s*(s[:](?<seconds>[-]?\\d+))?\\s*(ms[:](?<miliseconds>[-]?\\d+))?\\s*(t[:](?<ticks>[-]?\\d+))?\\s*(ns[:](?<nanoseconds>[-]?\\d+))?",
+                RegexOptions.None,
+                TimeSpan.FromSeconds(5));
+#pragma warning restore MA0023
 
         private PeriodHandler()
         {
