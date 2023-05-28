@@ -35,6 +35,7 @@ steps:
     displayName: Restore
     inputs:
       command: restore
+      verbosityRestore: Quiet
       arguments: AdaskoTheBeAsT.Dapper.NodaTime.sln
 
   - task: SonarCloudPrepare@1
