@@ -11,8 +11,8 @@
     <RepositoryType>github</RepositoryType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <Description>Provides Noda Time support for Dapper</Description>
-    <PackageVersion>1.0.3</PackageVersion>
-    <Authors>Matt Johnson; forked and updated Adam Pluciński</Authors>
+    <PackageVersion>2.0.0</PackageVersion>
+    <Authors>Matt Johnson; forked and updated Adam "AdaskoTheBeAsT" Pluciński</Authors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -22,6 +22,7 @@
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/AdaskoTheBeAsT/AdaskoTheBeAsT.Dapper.NodaTime</PackageProjectUrl>
     <PackageTags>dapper;nodatime;noda time</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
@@ -30,7 +31,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="Dapper" Version="2.0.143" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="NodaTime" Version="3.1.9" />
   </ItemGroup>

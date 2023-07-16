@@ -55,7 +55,10 @@ Work in progress.  Currently supports the following types:
 - Offset - can be mapped to int
 - OffsetDateTime - can be mapped to datetimeoffset
 - Period - can be mapped to varchar(195) 
-Max length of period is 195 characters. It is written as for example
+It is written as for example
+
+
+Version 1 Max length of period is 195 characters (obsoleted).
 "Y:-2147483648 M:-2147483648 W:-2147483648 D:-2147483648 h:-9223372036854775808 m:-9223372036854775808 s:-9223372036854775808 ms:-9223372036854775808 t:-9223372036854775808 ns:-9223372036854775808"
 
 Where:
@@ -70,6 +73,24 @@ Where:
 - ms - milliseconds
 - t - ticks
 - ns - nanoseconds
+
+Version 2 uses Roundtrip format from NodaTime. Max length of period is 176 characters.
+"P-2147483648Y-2147483648M-2147483648W-2147483648DT-9223372036854775808H-9223372036854775808M-9223372036854775808S-9223372036854775808s-9223372036854775808t-9223372036854775808n"
+
+Where:
+
+- P - start of period as in ISO8601
+- Y - years as in ISO8601
+- M - months as in ISO8601
+- W - weeks as in ISO8601
+- D - days as in ISO8601
+- T - date and time SEPARATOR as in ISO8601
+- H - hours as in ISO8601
+- M - minutes as in ISO8601
+- S - seconds as in ISO8601
+- s - milliseconds
+- t - ticks
+- n - nanoseconds
 
 Does not support:
 

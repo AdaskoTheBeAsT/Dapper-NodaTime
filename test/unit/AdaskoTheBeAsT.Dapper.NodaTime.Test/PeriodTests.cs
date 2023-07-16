@@ -40,7 +40,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
                 }.Build(),
             };
 
-            const string sql = "CREATE TABLE #T ([Value] varchar(195)); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
+            const string sql = "CREATE TABLE #T ([Value] varchar(176)); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
             var t = connection.Query<TestObject>(sql, o).First();
 
             t.Value.Should().Be(o.Value);
@@ -53,7 +53,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
             using var connection = DbVendorLibraryConnectionProvider.Provide(library, _connectionString);
             var o = new TestObject();
 
-            const string sql = "CREATE TABLE #T ([Value] varchar(195) NULL); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
+            const string sql = "CREATE TABLE #T ([Value] varchar(176) NULL); INSERT INTO #T VALUES (@Value); SELECT * FROM #T";
             var t = connection.Query<TestObject>(sql, o).First();
 
             using (new AssertionScope())
