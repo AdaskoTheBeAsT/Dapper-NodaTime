@@ -17,9 +17,9 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
 
         public static DateTimeZoneHandler Default(IDateTimeZoneProvider provider) => new(provider);
 
-        public override void SetValue(IDbDataParameter parameter, DateTimeZone value)
+        public override void SetValue(IDbDataParameter parameter, DateTimeZone? value)
         {
-            parameter.Value = value.Id;
+            parameter.Value = value == null ? DBNull.Value : value.Id;
             parameter.SetSqlDbType(SqlDbType.VarChar);
         }
 

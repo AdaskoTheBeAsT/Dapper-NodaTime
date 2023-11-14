@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using Dapper;
 using NodaTime;
@@ -14,9 +15,9 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
         {
         }
 
-        public override void SetValue(IDbDataParameter parameter, Period value)
+        public override void SetValue(IDbDataParameter parameter, Period? value)
         {
-            parameter.Value = PeriodPattern.Roundtrip.Format(value);
+            parameter.Value = value == null ? DBNull.Value : PeriodPattern.Roundtrip.Format(value);
             parameter.SetSqlDbType(SqlDbType.VarChar);
         }
 

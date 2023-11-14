@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using Dapper;
 using NodaTime;
@@ -13,9 +14,9 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime
         {
         }
 
-        public override void SetValue(IDbDataParameter parameter, CalendarSystem value)
+        public override void SetValue(IDbDataParameter parameter, CalendarSystem? value)
         {
-            parameter.Value = value.Id;
+            parameter.Value = value == null ? DBNull.Value : value.Id;
             parameter.SetSqlDbType(SqlDbType.VarChar);
         }
 
