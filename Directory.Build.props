@@ -22,7 +22,7 @@
     <PackageReference Include="codecracker.CSharp" Version="1.1.0" PrivateAssets="all" />
     <PackageReference Include="ConcurrencyLab.ParallelChecker" Version="2.7.0" PrivateAssets="all" />
     <PackageReference Include="IDisposableAnalyzers" Version="4.0.7" PrivateAssets="all" />
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.112" PrivateAssets="all" />
+    <PackageReference Include="Meziantou.Analyzer" Version="2.0.116" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis" Version="4.8.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0-beta1.23525.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" PrivateAssets="all" />

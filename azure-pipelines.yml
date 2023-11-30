@@ -26,6 +26,13 @@ steps:
       installationPath: $(Agent.ToolsDirectory)/dotnet
 
   - task: UseDotNet@2
+    displayName: "Use .NET Core SDK 7.0.x"
+    inputs:
+      packageType: "sdk"
+      version: 7.0.x
+      installationPath: $(Agent.ToolsDirectory)/dotnet
+
+  - task: UseDotNet@2
     displayName: "Use .NET Core SDK from global.json"
     inputs:
       packageType: "sdk"
@@ -80,7 +87,7 @@ steps:
   - task: ResharperCli@2
     inputs:
       solutionOrProjectPath: "AdaskoTheBeAsT.Dapper.NodaTime.sln"
-      resharperNuGetVersion: '2023.1.2'
+      resharperNuGetVersion: '2023.2.3'
       failBuildLevelSelector: "Warning"
       resultsOutputFilePath: "$(Build.SourcesDirectory)/CodeQualityResults.xml"
       additionalArguments: "--no-build"
