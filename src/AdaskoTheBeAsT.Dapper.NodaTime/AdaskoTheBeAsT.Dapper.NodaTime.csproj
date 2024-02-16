@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.28" />
-    <PackageReference Include="NodaTime" Version="3.1.10" />
+    <PackageReference Include="NodaTime" Version="3.1.11" />
   </ItemGroup>
   
   <ItemGroup>
