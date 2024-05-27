@@ -7,7 +7,7 @@
     <RepositoryType>github</RepositoryType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <Description>Provides Noda Time support for Dapper</Description>
-    <PackageVersion>4.0.0</PackageVersion>
+    <PackageVersion>4.0.2</PackageVersion>
     <Authors>Matt Johnson; forked and updated Adam "AdaskoTheBeAsT" Pluciński</Authors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IncludeSymbols>true</IncludeSymbols>
