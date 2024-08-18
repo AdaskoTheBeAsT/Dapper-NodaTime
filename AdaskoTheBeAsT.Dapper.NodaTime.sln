@@ -36,6 +36,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdaskoTheBeAsT.Dapper.NodaT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit", "unit", "{AF2EF7F7-A8BD-4ADE-A2B8-B87EA3D3564B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".sarif", ".sarif", "{2983A4C7-EFDD-462B-A4B7-3E837B41526C}"
+	ProjectSection(SolutionItems) = preProject
+		.sarif\.gitkeep = .sarif\.gitkeep
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
