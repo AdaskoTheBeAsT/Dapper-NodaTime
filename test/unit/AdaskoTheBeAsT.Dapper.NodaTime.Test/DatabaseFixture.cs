@@ -16,7 +16,7 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
 
         public async Task InitializeAsync()
         {
-            _sqlInstance = new SqlInstance(name: "Dapper.NodaTime.Tests", buildTemplate: _ => Task.CompletedTask);
+            _sqlInstance = new SqlInstance(name: GetDatabaseName(), buildTemplate: _ => Task.CompletedTask);
 
 #if NET6_0_OR_GREATER
             if (_database is not null)
@@ -48,6 +48,34 @@ namespace AdaskoTheBeAsT.Dapper.NodaTime.Test
 
 #else
             return Task.CompletedTask;
+#endif
+        }
+
+        private static string GetDatabaseName()
+        {
+#if NET462
+            return "DapperNodaTimeTests_NET462";
+#elif NET47
+            return "DapperNodaTimeTests_NET47";
+#elif NET471
+            return "DapperNodaTimeTests_NET471";
+#elif NET472
+            return "DapperNodaTimeTests_NET472";
+#elif NET48
+            return "DapperNodaTimeTests_NET48";
+#elif NET481
+            return "DapperNodaTimeTests_NET481";
+#elif NET6_0
+            return "DapperNodaTimeTests_NET6";
+#elif NET7_0
+            return "DapperNodaTimeTests_NET7";
+#elif NET8_0
+            return "DapperNodaTimeTests_NET8";
+#elif NET9_0
+            return "DapperNodaTimeTests_NET9";
+#else
+            // Fallback or unknown TFM
+            return "DapperNodaTimeTests_Unknown";
 #endif
         }
     }
