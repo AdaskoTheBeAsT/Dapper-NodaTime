@@ -55,7 +55,7 @@ steps:
   - task: SonarCloudPrepare@3
     displayName: "Prepare analysis on SonarCloud"
     inputs:
-      scannerMode: "MSBuild"
+      scannerMode: "dotnet"
       SonarCloud: "Sonar.AdaskoTheBeAsT.Dapper.NodaTime"
       organization: "adaskothebeast-github"
       projectKey: "AdaskoTheBeAsT_AdaskoTheBeAsT.Dapper.NodaTime"
